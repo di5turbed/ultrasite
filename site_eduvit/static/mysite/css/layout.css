@@ -1,6 +1,105 @@
 .header {
     position: fixed;
     width: 100%;
-    border-bottom: 1px solid;
-    z-index: 1;
+    border-bottom: 1px solid #ddd;
+    z-index: 100;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 15px;
+}
+
+.site-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.site-description {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.nav-buttons {
+    display: flex;
+}
+
+.nav-button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.nav-button:hover {
+    background-color: #307b75;
+    color: #eee;
+}
+
+.header-spacer {
+    height: 70px;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .nav-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-button {
+        margin: 5px 0;
+        width: 100%;
+    }
 }

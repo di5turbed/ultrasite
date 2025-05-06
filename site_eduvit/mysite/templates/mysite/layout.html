@@ -4,18 +4,37 @@
     <meta charset="UTF-8">
     <title>
         {% block title%}
+        Главная | MySite
         {% endblock %}
     </title>
     <link rel="stylesheet" href="{% static 'mysite/css/layout.css' %}">
+    <link rel="icon" href="{% static 'mysite/img/logo.ico' %}" type="image/x-icon">
     {% block static %}
     {% endblock %}
 </head>
 <body>
     <div class="header">
-        <a>Панель навигации</a>
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="{% static 'mysite/img/logo.png' %}" alt="Логотип сайта" class="logo">
+                <div class="site-info">
+                    <div class="site-title">Мой Сайт</div>
+                    <div class="site-description">Создан на базе познаний Никиты Смирнова</div>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <div class="nav-buttons">
+                    <a href="/" class="nav-button">Главная</a>
+                    <a href="/lenta/" class="nav-button">Лента</a>
+                    <a href="/news/" class="nav-button">Новости</a>
+                    <a href="/contacts/" class="nav-button">Контакты</a>
+                    <a href="/account/" class="nav-button">Мой аккаунт</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="height: 50px">
-    </div>
+    <div class="header-spacer"></div>
     {% block content %}
     {% endblock %}
 </body>
