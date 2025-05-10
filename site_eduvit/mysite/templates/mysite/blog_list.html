@@ -2,10 +2,20 @@
 {% load static %}
 {% block title %}Блог{% endblock %}
 
-{% block static%}
-<link rel="stylesheet" href="{% static 'mysite/css/blog_list.css'}"
+{% block static %}
+<link rel="stylesheet" href="{% static 'mysite/css/blog_list.css' %}">
 {% endblock %}
 
 {% block content %}
-<a>Страница со списком постов блока</a>
+    <div class="list">
+        {% for blog in blogs %}
+            <div class="blog" style="background: url({{ blog.image.url }}) no-repeat; background-position: center; background-size: cover;">
+                <a href="{{ blog.get_absolute_url }}">{{blog.title}}</a>
+                <div class="blog_info">
+                    <a>{{ blog.author }}</a>
+                    <a>{{ blog.date_published }}</a>
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
 {% endblock %}

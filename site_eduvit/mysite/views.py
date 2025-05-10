@@ -1,4 +1,12 @@
 from django.shortcuts import render
+from .models import BlogPost
 
 def index(request):
-    return render(request, template_name='mysite/blog_list.html')
+    blogs = BlogPost.objects.all()
+    title = "Главная страница"
+    return render(request, template_name='mysite/blog_list.html', context={"blogs": blogs, "title": title})
+
+def detail(request, pk):
+    blog = BlogPost.objects.get(pk=pk)
+    title = blog.title
+    return render(request, template_name='mysite/blog_detail.html', context={"blog": blog, "title": title})
