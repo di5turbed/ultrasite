@@ -16,3 +16,19 @@ class BlogPost(models.Model):
     def get_absolute_url(self):
         return reverse("mysite:blog_detail", kwargs={"pk": self.pk})
     
+    class Meta:
+        verbose_name = "Блог"
+        verbose_name_plural = "Блоги"
+
+class Comment(models.Model):
+    blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE, verbose_name="Блог")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор", null=True, blank=True)
+    text = models.TextField(verbose_name="Текст комментария")
+    date_published = models.DateTimeField(default=timezone.now(), verbose_name="Дата публикации")
+    
+    def __str__(self):
+        return str(self.text)
+    
+    class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"

@@ -8,13 +8,26 @@
 
 {% block content %}
     <div class="blog_detail">
-        <div class="content">
-            <img src="{{ blog.image.url}}">
-            <div><a>{{ blog.content }}</a></div>
+            <div class="content">
+                <img src="{{ blog.image.url}}">
+                <div><a>{{ blog.content | linebreaks }}</a></div>
+                <div class="blog_info">
+                    <a>{{ blog.author }}</a>
+                    <a>{{ blog.date_published }}</a>
+            </div>
         </div>
-        <div class="blog_info">
-            <a>{{ blog.author }}</a>
-            <a>{{ blog.date_published }}</a>
+        <div class="comments">
+            {% if "comments" %}
+                {% for comment in comments %}
+                    <div class="comment">
+                        <a>{{ comment.author }}</a>
+                        <a>{{ comment.text }}</a>
+                        <a>{{ comment.date_published }}</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <a class="no_comments">Комментариев пока нет</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
