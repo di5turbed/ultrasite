@@ -10,11 +10,6 @@ def detail(request, pk):
     blog = BlogPost.objects.get(pk=pk)
     comments = Comment.objects.filter(blog=blog)
     title = blog.title
-
-    first = blogs.first().id
-    last = blogs.last()id
-    count = str(request.GET.get("post"))
-
     return render(
         request,
         template_name='mysite/blog_detail.html',
