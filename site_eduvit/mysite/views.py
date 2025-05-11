@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import BlogPost
+from .models import BlogPost, Comment
 
 def index(request):
     blogs = BlogPost.objects.all()
@@ -8,5 +8,15 @@ def index(request):
 
 def detail(request, pk):
     blog = BlogPost.objects.get(pk=pk)
+    comments = Comment.objects.filter(blog=blog)
     title = blog.title
-    return render(request, template_name='mysite/blog_detail.html', context={"blog": blog, "title": title})
+
+    first = blogs.first().id
+    last = blogs.last()id
+    count = str(request.GET.get("post"))
+
+    return render(
+        request,
+        template_name='mysite/blog_detail.html',
+        context={"blog": blog, "comments": comments, "title": title}
+    )
