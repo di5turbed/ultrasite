@@ -20,9 +20,11 @@
             {% if "comments" %}
                 {% for comment in comments %}
                     <div class="comment">
-                        <a>{{ comment.author }}</a>
+                        <a style="font-size: 20"><img src="{% static 'mysite/img/user.png' %}"
+                        style="width: 25; margin-right: 10px;">
+                            {{ comment.author }}</a>
                         <a>{{ comment.text }}</a>
-                        <a>{{ comment.date_published }}</a>
+                        <a style="align-self: flex-end">{{ comment.date_published }}</a>
                     </div>
                 {% endfor %}
             {% else %}
