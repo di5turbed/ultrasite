@@ -8,6 +8,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("mysite/", include("mysite.urls"), name="index"),
     path("users", include("users.urls"), name="users"),
+    path("contacts/", include("mysite.urls"), name="contacts"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

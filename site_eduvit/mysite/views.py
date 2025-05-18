@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import BlogPost, Comment
 from .forms import BlogModelForm
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     blogs = BlogPost.objects.all()
@@ -30,3 +31,12 @@ def create_blog(request):
     else:
         form = BlogModelForm()
     return render(request, template_name='mysite/create_update_blog.html', context= {"title": title, "form": form})
+
+@login_required
+def profile(request):
+    user_blogs = BlogPost.objects.filter(author=request.user)
+    return render(request, 'users/profile.html', {'user_blogs': user_blogs})
+
+def contacts(request):
+    title = "Контакты"
+    return render(request, 'mysite/contacts.html', {'title': title})

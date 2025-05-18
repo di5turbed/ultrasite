@@ -3,6 +3,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from django.urls import reverse_lazy
+
+from mysite.models import BlogPost, Comment
 from .forms import AuthUserForm, UserRegistrationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 
@@ -39,5 +41,5 @@ def register(request):
 
 @login_required
 def profile(request):
-    user_blogs = request.user.blog_set.all()
-    return render(request, 'users/profile.html', {"user_blogs": user_blogs})
+    user_blogs = BlogPost.objects.filter(author=request.user)
+    return render(request, 'users/profile.html', {'user_blogs': user_blogs})

@@ -1,0 +1,24 @@
+{% extends 'mysite/layout.html' %}
+{% load static %}
+{% block title %}Контакты{% endblock %}
+
+{% block static %}
+<link rel="stylesheet" href="{% static 'mysite/css/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="contacts-outer">
+    <div class="contacts-center-box">
+        <p>
+            Сайт создан студентом группы 0482-05 Смирновым Никитой
+        </p>
+        <p style="font-weight: bold; margin-bottom: 16px;">
+            Передовая Инженерная Школа ПсковГУ
+        </p>
+        <p>
+            Связь со мной: <a href="mailto:smirnofff.58@yandex.ru">smirnofff.58@yandex.ru</a><br>
+            +7911-876-54-32
+        </p>
+    </div>
+</div>
+{% endblock %}

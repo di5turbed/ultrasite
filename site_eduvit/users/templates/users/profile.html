@@ -1,11 +1,37 @@
 {% extends 'mysite/layout.html' %}
 {% load static %}
-{% block title %}Profile{% endblock %}
+{% block title %}Профиль{% endblock %}
 
 {% block static %}
 <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
-    Слова
+<div class="container mt-4">
+    <h1>Мой профиль</h1>
+    <h2>Мои блоги</h2>
+    
+    {% if user_blogs %}
+        <div class="row">
+            {% for blog in user_blogs %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if blog.image %}
+                            <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blog.title }}</h5>
+                            <p class="card-text">{{ blog.content|truncatewords:30 }}</p>
+                            <p class="card-text"><small class="text-muted">Опубликовано: {{ blog.date_published|date:"d.m.Y H:i" }}</small></p>
+                            <a href="{% url 'mysite:blog_detail' blog.pk %}" class="btn btn-primary">Читать далее</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>У вас пока нет опубликованных блогов.</p>
+        <a href="{% url 'mysite:create_blog' %}" class="btn btn-primary">Создать блог</a>
+    {% endif %}
+</div>
 {% endblock %}
