@@ -25,8 +25,7 @@
             
             <div class="nav-menu">
                 <div class="nav-buttons">
-                    <a href="{% url 'mysite:index' %}" class="nav-button">Главная</a>
-                    <a href="/lenta/" class="nav-button">Лента</a>
+                    <a href="{% url 'index' %}" class="nav-button">Главная</a>
                     <a href="/news/" class="nav-button">Новости</a>
                     <a href="/contacts/" class="nav-button">Контакты</a>
                     <a href="/account/" class="nav-button">Мой аккаунт</a>
@@ -38,12 +37,15 @@
                 {% comment %} {% if user.is_superuser %}
                     <a href="/admin/" class="nav-button b">Администрирование</a>
                 {% endif %} {% endcomment %}
-                <a href="" class="nav-button">Выход</a>
+                <form class="log_out_form" action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-info"><i class="fa fa-sign-out-alt"></i>Выход</button>
+                </form>
             {% else %}
-                <a href="" class="nav-button">Войти</a>
-                <a href="" class="nav-button">Зарегистрироваться</a>
+                <a class="nav-button" href="{% url 'users:login' %}">Войти</a>
+                <a class="nav-button" href="{% url 'users:register' %}">Зарегистрироваться</a>
             {% endif %}
-        </div>
+            </div>
         </div>
     </div>
     <div class="header-spacer"></div>

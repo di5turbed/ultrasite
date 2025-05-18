@@ -1,6 +1,6 @@
-from django.forms import ModelForm
-from .models import BlogPost
 from django import forms
+from mysite.models import BlogPost
+from django.forms import ModelForm
 
 
 class BlogModelForm(ModelForm):
@@ -24,7 +24,7 @@ class BlogModelForm(ModelForm):
         self.fields["title"].label = ""
         self.fields["title"].widget = forms.Textarea(
             attrs={
-                "placeholder": "Содержание",
+                "placeholder": "Название",
                 "rows": 10,
                 "class": "form-control",
             }

@@ -4,5 +4,6 @@ from . import views
 app_name = 'mysite'
 urlpatterns = [
     path("", views.index, name="index"),
-    path("detail/<int:pk>/", views.detail, name="blog_detail")
+    path("detail/<int:pk>/", views.detail, name="blog_detail"),
+    path("create/", views.create_blog, name="create_blog"),
 ]

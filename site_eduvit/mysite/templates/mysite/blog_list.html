@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="block_content">
-        <a class="newblogbutton" href="">Создать блог</a>
+        <a class="newblogbutton" href="{% url 'mysite:create_blog' %}">Создать блог</a>
         <div class="list">
             {% for blog in blogs %}
                 <div class="blog" style="background: url({{ blog.image.url }}) no-repeat; background-position: center; background-size: cover;">

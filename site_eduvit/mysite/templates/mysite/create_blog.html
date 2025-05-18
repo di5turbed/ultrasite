@@ -1,0 +1,18 @@
+{% extends 'mysite/layout.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block static %}
+<link rel="stylesheet" href="{% static 'mysite/css/create_blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="block_content">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-button">Создать блог</button>
+        </form>
+    </div>
+{% endblock %} 
