@@ -35,3 +35,5 @@ def register(request):
     else:
         regform = UserCreationForm()
     return render(request, 'users/register.html', {"regform": regform})
+
+def profile(request)
