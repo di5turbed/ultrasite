@@ -10,10 +10,10 @@ class Login(LoginView):
     fields = ["username", "password"]
     template_name = 'users/login.html'
     form_class = AuthUserForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('mysite:index')
 
 class Logout(LogoutView):
-    next_page = reverse_lazy('index')
+    next_page = reverse_lazy('mysite:index')
 
 
 
@@ -31,7 +31,7 @@ def register(request):
 
             reg_f.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request, reg_f)
-            return redirect('index')
+            return redirect('mysite:index')
     else:
         regform = UserCreationForm()
     return render(request, 'users/register.html', {"regform": regform})
