@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from .forms import AuthUserForm, UserRegistrationForm, UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 
 class Login(LoginView):
@@ -36,4 +37,7 @@ def register(request):
         regform = UserCreationForm()
     return render(request, 'users/register.html', {"regform": regform})
 
-def profile(request)
+@login_required
+def profile(request):
+    user_blogs = request.user.blog_set.all()
+    return render(request, 'users/profile.html', {"user_blogs": user_blogs})
