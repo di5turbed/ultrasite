@@ -1,139 +1,130 @@
-.blog-detail-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.blog_detail {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-.blog-content {
+.content {
     background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
-.blog-content h1 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 28px;
-}
-
-.blog-image {
-    margin-bottom: 20px;
-}
-
-.blog-image img {
+.content img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
 }
 
-.blog-text {
-    color: #444;
+.content div:nth-child(2) {
+    font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.blog-meta {
-    color: #666;
-    font-size: 14px;
-}
-
-.comments-section {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.comments-section h2 {
     color: #333;
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 1.5rem;
 }
 
-.comment-form-container {
-    margin-bottom: 30px;
+.blog_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.comments {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.comment-form {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
 }
 
 .comment-form textarea {
     width: 100%;
-    padding: 12px;
+    padding: 1rem;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
     resize: vertical;
+    min-height: 100px;
 }
 
-.submit-comment {
-    background-color: #307b75;
+.comment-form button {
+    background: #007bff;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s ease;
 }
 
-.submit-comment:hover {
-    background-color: #245c57;
-}
-
-.login-prompt {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.login-prompt a {
-    color: #307b75;
-    text-decoration: none;
-}
-
-.login-prompt a:hover {
-    text-decoration: underline;
-}
-
-.comments-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.comment-form button:hover {
+    background: #0056b3;
 }
 
 .comment {
-    border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
-}
-
-.comment:last-child {
-    border-bottom: none;
-}
-
-.comment-header {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.comment-author {
-    font-weight: bold;
+.comment a:first-child {
+    display: flex;
+    align-items: center;
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.comment a:nth-child(2) {
     color: #333;
-}
-
-.comment-date {
-    color: #666;
-    font-size: 14px;
-}
-
-.comment-content {
-    color: #444;
     line-height: 1.5;
 }
 
-.no-comments {
-    text-align: center;
+.comment a:last-child {
     color: #666;
+    font-size: 0.8rem;
+    align-self: flex-end;
+}
+
+.no_comments {
+    color: #666;
+    text-align: center;
+    padding: 2rem;
     font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .blog_detail {
+        margin: 1rem auto;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+    
+    .content img {
+        height: 300px;
+    }
+    
+    .comments {
+        padding: 1rem;
+    }
 }
