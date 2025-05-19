@@ -1,0 +1,44 @@
+{% extends 'mysite/layout.html' %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block static %}
+<link rel="stylesheet" href="{% static 'mysite/css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="news-container">
+    <div class="search-sort-container">
+        <form method="get" class="search-form">
+            <input type="text" name="search" placeholder="Поиск по названию..." value="{{ request.GET.search }}">
+            <button type="submit">Поиск</button>
+        </form>
+        <div class="sort-buttons">
+            <a href="?sort=date_desc" class="sort-button {% if request.GET.sort == 'date_desc' %}active{% endif %}">Сначала новые</a>
+            <a href="?sort=date_asc" class="sort-button {% if request.GET.sort == 'date_asc' %}active{% endif %}">Сначала старые</a>
+        </div>
+    </div>
+
+    <div class="news-list">
+        {% for blog in blogs %}
+            <div class="news-item">
+                <div class="news-image">
+                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                </div>
+                <div class="news-content">
+                    <h2><a href="{% url 'mysite:blog_detail' blog.pk %}">{{ blog.title }}</a></h2>
+                    <div class="news-meta">
+                        <span class="author">{{ blog.author }}</span>
+                        <span class="date">{{ blog.date_published|date:"d.m.Y H:i" }}</span>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="no-news">
+                <p>Новостей не найдено</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

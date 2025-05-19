@@ -26,7 +26,7 @@
             <div class="nav-menu">
                 <div class="nav-buttons">
                     <a href="{% url 'mysite:index' %}" class="nav-button">Главная</a>
-                    <a href="/news/" class="nav-button">Новости</a>
+                    <a href="{% url 'mysite:news' %}" class="nav-button">Новости</a>
                     <a href="{% url 'mysite:contacts' %}" class="nav-button">Контакты</a>
                     <a href="{% url 'users:profile' %}" class="nav-button">Мой аккаунт</a>
                 </div>

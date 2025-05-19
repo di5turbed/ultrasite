@@ -3,10 +3,39 @@ from .models import BlogPost, Comment
 from .forms import BlogModelForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 def index(request):
     blogs = BlogPost.objects.all()
     title = "Главная страница"
+    return render(request, template_name='mysite/blog_list.html', context={"blogs": blogs, "title": title})
+
+def news(request):
+    blogs = BlogPost.objects.all()
+    
+    # Поиск по названию
+    search_query = request.GET.get('search', '')
+    if search_query:
+        blogs = blogs.filter(title__icontains=search_query)
+    
+    # Сортировка по дате
+    sort = request.GET.get('sort', 'date_desc')
+    if sort == 'date_asc':
+        blogs = blogs.order_by('date_published')
+    else:  # date_desc
+        blogs = blogs.order_by('-date_published')
+    
+    title = "Новости"
+    return render(request, template_name='mysite/news.html', context={
+        "blogs": blogs,
+        "title": title,
+        "search_query": search_query,
+        "sort": sort
+    })
+
+def blog_list(request):
+    blogs = BlogPost.objects.all()
+    title = "Новости"
     return render(request, template_name='mysite/blog_list.html', context={"blogs": blogs, "title": title})
 
 def detail(request, pk):
