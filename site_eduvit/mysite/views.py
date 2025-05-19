@@ -3,12 +3,12 @@ from .models import BlogPost, Comment
 from .forms import BlogModelForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 
 def index(request):
     blogs = BlogPost.objects.all()
     title = "Главная страница"
     return render(request, template_name='mysite/blog_list.html', context={"blogs": blogs, "title": title})
+
 
 def news(request):
     blogs = BlogPost.objects.all()
@@ -32,11 +32,6 @@ def news(request):
         "search_query": search_query,
         "sort": sort
     })
-
-def blog_list(request):
-    blogs = BlogPost.objects.all()
-    title = "Новости"
-    return render(request, template_name='mysite/blog_list.html', context={"blogs": blogs, "title": title})
 
 def detail(request, pk):
     blog = BlogPost.objects.get(pk=pk)
