@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import BlogPost, Comment
-from .forms import BlogModelForm
+from .forms import BlogModelForm, CommentForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
@@ -34,13 +34,30 @@ def news(request):
     })
 
 def detail(request, pk):
-    blog = BlogPost.objects.get(pk=pk)
+    blog = get_object_or_404(BlogPost, pk=pk)
     comments = Comment.objects.filter(blog=blog)
     title = blog.title
+    
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.blog = blog
+            comment.author = request.user
+            comment.save()
+            return redirect('mysite:blog_detail', pk=pk)
+    else:
+        form = CommentForm()
+        
     return render(
         request,
         template_name='mysite/blog_detail.html',
-        context={"blog": blog, "comments": comments, "title": title}
+        context={
+            "blog": blog,
+            "comments": comments,
+            "title": title,
+            "form": form
+        }
     )
 
 def create_blog(request):

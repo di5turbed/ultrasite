@@ -1,5 +1,6 @@
 {% extends 'mysite/layout.html' %}
 {% load static %}
+
 {% block title %}Блог{% endblock %}
 
 {% block static %}
@@ -17,7 +18,15 @@
             </div>
         </div>
         <div class="comments">
-            {% if "comments" %}
+            {% if user.is_authenticated %}
+                <form method="post" class="comment-form">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="btn btn-primary">Отправить комментарий</button>
+                </form>
+            {% endif %}
+            
+            {% if comments %}
                 {% for comment in comments %}
                     <div class="comment">
                         <a style="font-size: 20"><img src="{% static 'mysite/img/user.png' %}"

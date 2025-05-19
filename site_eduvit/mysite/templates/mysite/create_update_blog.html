@@ -1,21 +1,32 @@
 {% extends 'mysite/layout.html' %}
 {% load static %}
-{% block title %}Блог{% endblock %}
+
+{% block title %}Создание блога{% endblock %}
 
 {% block static %}
-<link rel="stylesheet" href="{% static 'mysite/css/create_update_blog.css' %}">
+<link rel="stylesheet" href="{% static 'mysite/css/create_blog.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="createform">
-        <form method="POST" enctype="multipart/form-data">
-            <div class="form">
-                {% csrf_token %}
-                {{ form.title }}<br>
-                {{ form.content }}<br>
-                {{ form.image }}<br>
-                <button type="submit" class="create">Создать</button>
+<div class="create-blog-container">
+    <div class="create-blog-box">
+        <h2>Создание нового блога</h2>
+        <form method="POST" enctype="multipart/form-data" class="create-blog-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.title }}
             </div>
+            <div class="form-group">
+                {{ form.content }}
+            </div>
+            <div class="form-group file-input">
+                <label for="{{ form.image.id_for_label }}" class="file-label">
+                    <span class="file-text">Выберите изображение</span>
+                    {{ form.image }}
+                </label>
+            </div>
+            <button type="submit" class="submit-button">Опубликовать</button>
         </form>
     </div>
+</div>
 {% endblock %}
