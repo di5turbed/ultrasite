@@ -1,20 +1,34 @@
 {% extends 'mysite/layout.html' %}
 {% load static %}
-{% block title %}Auth{% endblock %}
+
+{% block title %}Вход в аккаунт{% endblock %}
 
 {% block static %}
-<link rel="stylesheet" href="{% static 'users/css/user_form.css' %}">
+<link rel="stylesheet" href="{% static 'users/css/login.css' %}">
 {% endblock %}
 
 {% block content %}
-    <a class="title">Войти в аккаунт</a>
-    <div class="div_form">
-        <div class="form">
-            <form method="Post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn-success-outline-info">Войти</button>
-            </form>
+<div class="login-container">
+    <div class="login-box">
+        <h2>Вход в аккаунт</h2>
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                {{ form.password }}
+            </div>
+            {% if form.errors %}
+                <div class="error-message">
+                    Неверное имя пользователя или пароль
+                </div>
+            {% endif %}
+            <button type="submit" class="login-button">Войти</button>
+        </form>
+        <div class="register-link">
+            <p>Нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a></p>
         </div>
     </div>
+</div>
 {% endblock %}

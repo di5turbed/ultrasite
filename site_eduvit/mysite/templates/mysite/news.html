@@ -20,6 +20,12 @@
         </div>
     </div>
 
+    {% if user.is_authenticated %}
+    <div class="create-blog-container">
+        <a href="{% url 'mysite:create_blog' %}" class="create-blog-button">Создать блог</a>
+    </div>
+    {% endif %}
+
     <div class="news-list">
         {% for blog in blogs %}
             <div class="news-item">

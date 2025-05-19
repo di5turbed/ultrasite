@@ -3,22 +3,30 @@
 {% block title %}Блог{% endblock %}
 
 {% block static %}
-<link rel="stylesheet" href="{% static 'mysite/css/blog_list.css' %}">
+<link rel="stylesheet" href="{% static 'mysite/css/news.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="block_content">
-        <a class="newblogbutton" href="{% url 'mysite:create_blog' %}">Создать блог</a>
-        <div class="list">
-            {% for blog in blogs %}
-                <div class="blog" style="background: url({{ blog.image.url }}) no-repeat; background-position: center; background-size: cover;">
-                    <a href="{{ blog.get_absolute_url }}">{{blog.title}}</a>
-                    <div class="blog_info">
-                        <a>{{ blog.author }}</a>
-                        <a>{{ blog.date_published }}</a>
+<div class="news-container">
+    <div class="news-list">
+        {% for blog in blogs %}
+            <div class="news-item">
+                <div class="news-image">
+                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                </div>
+                <div class="news-content">
+                    <h2><a href="{% url 'mysite:blog_detail' blog.pk %}">{{ blog.title }}</a></h2>
+                    <div class="news-meta">
+                        <span class="author">{{ blog.author }}</span>
+                        <span class="date">{{ blog.date_published|date:"d.m.Y H:i" }}</span>
                     </div>
                 </div>
-            {% endfor %}    
-        </div>
+            </div>
+        {% empty %}
+            <div class="no-news">
+                <p>Блогов пока нет</p>
+            </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}

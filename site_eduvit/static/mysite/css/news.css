@@ -15,6 +15,25 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.create-blog-container {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.create-blog-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #307b75;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.create-blog-button:hover {
+    background-color: #245c57;
+}
+
 .search-form {
     display: flex;
     gap: 10px;

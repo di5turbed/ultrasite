@@ -18,7 +18,7 @@ class AuthUserForm(AuthenticationForm, forms.ModelForm):
             }
         )
 
-        self.fields["password"].widget = forms.TextInput(
+        self.fields["password"].widget = forms.PasswordInput(
             attrs={
                 "placeholder": "Пароль",
                 "class": "form-control",

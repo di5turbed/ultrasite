@@ -5,7 +5,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    blogs = BlogPost.objects.all()
+    blogs = BlogPost.objects.all().order_by('-date_published')[:3]  # Получаем только последние 3 блога
     title = "Главная страница"
     return render(request, template_name='mysite/blog_list.html', context={"blogs": blogs, "title": title})
 
